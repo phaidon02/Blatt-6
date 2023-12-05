@@ -1,53 +1,59 @@
 import java.util.Scanner;
+import java.lang.Boolean;
 
 public class A3 {
     public static void main(String[] args) {
-        int c = 0, e=0;
+        int eingabe = 0, versuche=0;
     
-        boolean d = true,  f=true, a;
+        boolean eingabeüberprüfung = true,  schleife=true;
 
-
-        Scanner eingabe = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Raten Sie die geheime Zahl.");
 
-        while (f) {    
-            e += 1;                                                                                 //zählt wiehäufig die schleife durchgelaufen ist
-            d=true;
-            while (d) {                                                                             //eingabe abfrage bis ein Int eingegeben wurde
-                if (eingabe.hasNextInt()) {
-                    c = eingabe.nextInt();
-                    d = false;
-                } else {
-                    eingabe.next();
+        while (schleife) {    
+            versuche += 1;                            //zählt wiehäufig die schleife durchgelaufen ist
+            eingabeüberprüfung=true;
+            while (eingabeüberprüfung) {                  //eingabe abfrage bis ein Int eingegeben wurde
+
+                if (scanner.hasNextInt()) {                    //überprüft ob der eingegebene wert ein Int ist
+                    eingabe = scanner.nextInt();
+                    eingabeüberprüfung = false;
+                } else {                                              //leert den scanner wenn kein int eingegeben wurde
+                    scanner.next();
                 }
             }
 
-            if (zahl(c)) {                                                                         //fragt ab ob die methode zahl whar oder Falsch aus gibt
+            if (zahl(eingabe)==null) {                         //überprüft ob die methode zahl null zurückgegeben hat
+                                                                                        
+                System.out.println("Richtig. Sie benoetigten " + versuche + " Versuche.");                //gibt an wieviele versuche man gebraucht hat wenn Zahl wahr aus gibt                
+                schleife = false;                     //beendet die schleife
 
-                System.out.println("Richtig. Sie benoetigten " + e + " Versuche.");                //gibt an wieviele versuche man gebraucht hat wenn Zahl wahr aus gibt
-                f = false;                                                                         //beendet die schleife
+            } else if(!zahl(eingabe)){                                 //überprüft ob die methode zahl false zurückgegebn hat
+                System.out.println("Zu klein! Ihr Tipp?");
+
+            }else if(zahl(eingabe)){                               //überprüft ob die methode zahl true zurückgegeben hat
+                System.out.println("Zu gross! Ihr Tipp?");
             }
         }
+        scanner.close();                                //schließt den scanner
     }
 
 
 
 
-    public static Boolean zahl(int a) {                                                             //Methode welche einene Int als input hat und einen boolean aus gibt
+    public static Boolean zahl(int versuch) {          //Methode welche einene Int als input hat und einen Boolean aus (kann auch null sein im vergleich zu boolean) gibt
 
 
-        Boolean b = true;                                                                           //definirt b als standartmäßig wahr
+        Boolean b=null;                                 //sezt b auf true fals die eingabe >126 ist
 
 
-        if (a < 126){                                                                               //sezt b auf false fals die eingabe !=126 ist und schreibt in die konsole ob die zahl größer oder kleiner 126 ist
-            System.out.println("Zu klein! Ihr Tipp?");
+        if (versuch < 126){                            //sezt b auf true fals die eingabe >126 ist
             b = false;
-        }else if(a > 126){
-            System.out.println("Zu gross! Ihr Tipp?");
-            b = false;
+        }else if(versuch > 126){
+            b = true;
         }
 
-        return b;                                                                                   //gibt den status von b zurück
+        return b;                                     //gibt den status von b zurück
     }
 }
