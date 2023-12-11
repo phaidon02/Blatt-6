@@ -2,21 +2,45 @@ package blatt6;
 
 import java.util.Scanner;
 
-public class A2_groesseres_feld {
+public class A2 {
 	private static void feld(char[][] spielfeld, int groesse) {
-		int a = 10, c = 1;
+		int a = 10, c = 1, d=0, f=0, h=0, m=0;
 		char b =' ';
+		String e ="", n="";
+
+		d=groesse*groesse;
+		while( d != 0)  {    
+			d = d / 10;  
+			f = f + 1;  
+		}
+		for (int g=1; g<f; g++){
+			e=e+'0';
+		}
+
 		for (int i=0; i<groesse; i++){
 			for(int j=0; j<groesse; j++){
 				b = spielfeld[i][j];
 				if (Character.isDigit(b)){
-				System.out.print(spielfeld[i][j]);
+					System.out.print(e);
+					System.out.print(spielfeld[i][j]);
 				}else if (Character.isAlphabetic(b) ){
+					System.out.print(e);
 					System.out.print(spielfeld[i][j]);
 					if(c>=10){
 						a++;
 					}
 				}else{
+					h=a;
+					while( h != 0)  {    
+						h = h / 10;  
+						m = m + 1;  
+					}
+					if(m<f){
+						for (int g=0; g<f; g++){
+							n=n+'0';
+						}
+					}
+					System.out.print(n);
 					System.out.print(a);
 					a++;
 				}
@@ -80,9 +104,8 @@ public class A2_groesseres_feld {
 				eingabe = in.nextLine();
 			}
 			while( n != 0)  {  
-// removing the last digit of the number n  
+  
 				n = n / 10;  
-// increasing count by 1  
 				count = count + 1;  
 			}  
 			if(eingabe.matches("[0-9]+") && eingabe.length() <= count && count <= groesse){
