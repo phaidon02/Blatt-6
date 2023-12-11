@@ -6,7 +6,7 @@ public class A2 {
 	private static void feld(char[][] spielfeld, int groesse) {
 		int a = 10, c = 1, d=0, f=0, h=0, m=0;
 		char b =' ';
-		String e ="", n="";
+		String e ="", n="",z="";
 
 		d=groesse*groesse;
 		while( d != 0)  {    
@@ -15,6 +15,7 @@ public class A2 {
 		}
 		for (int g=1; g<f; g++){
 			e=e+'0';
+			z=z+' ';
 		}
 
 		for (int i=0; i<groesse; i++){
@@ -23,8 +24,8 @@ public class A2 {
 				if (Character.isDigit(b)){
 					System.out.print(e);
 					System.out.print(spielfeld[i][j]);
-				}else if (Character.isAlphabetic(b) ){
-					System.out.print(e);
+				}else if (Character.isAlphabetic(b) && (b=='X' || b=='O')){
+					System.out.print(z);
 					System.out.print(spielfeld[i][j]);
 					if(c>=10){
 						a++;
@@ -56,10 +57,22 @@ public class A2 {
 	public static void main(String[] args) {
 		
 		Scanner in = new Scanner(System.in);
+		boolean d=true;
 		int spieler = 2, greosse = 4, e = 1;
-		char[][] board = new char[greosse][greosse];
 		boolean end = true;
-		
+		System.out.println("Gieb die größe des Spielfeldes an");
+		while (d) {
+            System.out.println("Geben Sie n an:");
+
+            if (in.hasNextInt()) {
+                greosse = in.nextInt();
+                d = false;
+            } else{
+                in.next();
+            }
+        }
+		char[][] board = new char[greosse][greosse];
+
 		for (int i=1; i<=greosse; i++){
 			for (int j=1; j<=greosse; j++){
 				board[(i-1)][(j-1)]=(char)(e+'0');
