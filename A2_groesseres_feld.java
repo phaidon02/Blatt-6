@@ -2,7 +2,7 @@ package blatt6;
 
 import java.util.Scanner;
 
-public class A2 {
+public class A2_groesseres_feld {
 	private static void feld(char[][] spielfeld, int groesse) {
 		int a = 10, c = 1;
 		char b =' ';
